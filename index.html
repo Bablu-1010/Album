@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Eternal Love ❤️</title>
+    <style>
+        :root {
+            --main-pink: #ff69b4;
+            --dark-pink: #ff1493;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffe6f2 url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(30)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="%23ff69b4"><path d="m92.15 5.87c-6.88-6.88-18-6.88-24.9 0l-9.52 9.52-9.52-9.52c-6.88-6.88-18-6.88-24.9 0s-6.88 18 0 24.9l9.52 9.52-9.52 9.52c-6.88 6.88-6.88 18 0 24.9s18 6.88 24.9 0l9.52-9.52 9.52 9.52c6.88 6.88 18 6.88 24.9 0s6.88-18 0-24.9l-9.52-9.52 9.52-9.52c6.83-6.88 6.83-18 0-24.9z"/></g></svg>');
+            overflow-x: hidden;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff69b4" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>'), auto;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #surpriseButton {
+            background: var(--main-pink);
+            color: white;
+            padding: 25px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.8em;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 8px 25px rgba(255,105,180,0.4);
+            transition: all 0.3s;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        #surpriseButton:hover {
+            background: var(--dark-pink);
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+
+        #photoGallery {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .photo {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .photo:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            animation: float 3s linear forwards;
+            font-size: 28px;
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(#fff, var(--main-pink));
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+        }
+
+        .love-letter {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            z-index: 1000;
+            display: none;
+            font-family: 'Brush Script MT', cursive;
+            line-height: 1.8;
+            font-size: 1.4em;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 32px;
+            cursor: pointer;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            15% { transform: translate(-50%, -50%) scale(1.2); }
+            30% { transform: translate(-50%, -50%) scale(1); }
+            45% { transform: translate(-50%, -50%) scale(1.1); }
+            60% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px var(--main-pink); }
+            50% { text-shadow: 0 0 20px var(--dark-pink); }
+            100% { text-shadow: 0 0 10px var(--main-pink); }
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 15px;
+            border-radius: 0 0 20px 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo:hover .photo-caption {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="surpriseButton">Click Here, My Love ❤️</button>
+        <div id="photoGallery"></div>
+        <div class="love-letter" id="loveLetter">
+            <div class="letter-content">
+                My Dearest Hubbbyyyyy,<br><br>
+                Every moment with you feels like a beautiful dream...<br>
+                I cherish our memories together and promise to always...<br><br>
+                Forever Yours,<br>
+                Wifeyyyyyy
+            </div>
+        </div>
+        <div class="music-control" onclick="toggleMusic()">🎵</div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const captions = [
+            "Our First Date ❤️",
+            "That Perfect Sunset 🌅",
+            "Your Beautiful Smile 😊",
+            "Forever Moments 💞",
+            // Add more captions here...
+        ];
+
+        document.getElementById('surpriseButton').addEventListener('click', async function() {
+            const button = this;
+            button.style.display = 'none';
+            
+            // Start background music
+            document.getElementById('bgMusic').play();
+            
+            // Create sparkles
+            setInterval(() => createSparkle(), 300);
+
+            // Initialize gallery
+            const gallery = document.getElementById('photoGallery');
+            gallery.style.opacity = '1';
+            gallery.style.visibility = 'visible';
+
+            // Load and animate photos
+            const images = [];
+            for(let i = 1; i <= 20; i++) {
+                const img = new Image();
+                img.src = `photos/${i}.jpg`;
+                img.className = 'photo';
+                
+                // Add caption container
+                const caption = document.createElement('div');
+                caption.className = 'photo-caption';
+                caption.textContent = captions[i % captions.length] || "Our Special Moment ❤️";
+                img.appendChild(caption);
+                
+                gallery.appendChild(img);
+                images.push(img);
+
+                // Initial animation
+                img.style.transform = `translate(${Math.random() * 2000 - 1000}px, ${Math.random() * 2000 - 1000}px)`;
+                img.style.opacity = '0';
+                
+                // Animate into position
+                setTimeout(() => {
+                    img.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+                    img.style.transform = 'none';
+                    img.style.opacity = '1';
+                }, (Math.floor(i / 5)) * 200);
+            }
+
+            // Create heart explosion
+            setTimeout(() => {
+                for(let i = 0; i < 150; i++) {
+                    setTimeout(() => createHeart(), i * 20);
+                }
+            }, 2000);
+
+            // Show love letter
+            setTimeout(() => {
+                document.getElementById('loveLetter').style.display = 'block';
+                createSparkleFlurry();
+            }, 5000);
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+
+        function createSparkleFlurry() {
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => createSparkle(), i * 50);
+            }
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            music.paused ? music.play() : music.pause();
+        }
+
+        // Close love letter on click
+        document.getElementById('loveLetter').addEventListener('click', function() {
+            this.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
